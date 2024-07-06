@@ -6,6 +6,8 @@ let router = express.Router()
 // 1 server = 1 app => you need to pass your app into your server
 let initWebRoutes = (app) =>{
     router.get('/',homeController.getHomePage)
+    router.get('/crud',homeController.getCRUD)
+    router.post('/post-crud',homeController.postCRUD)
 // Begin with /, and it have to use all routes that we declare
     return app.use("/",router)
 }
