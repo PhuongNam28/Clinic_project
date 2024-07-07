@@ -16,10 +16,18 @@ let getCRUD = (req , res)=>{
     return res.render('crud.ejs')
 }
 
+
 let postCRUD = async (req , res)=>{
     let message = await CRUDService.createNewUser(req.body)
     console.log(message)
     return res.send('post crud from server')
+}
+let displayCRUD = async (req , res)=>{
+    let data = await CRUDService.getAllUser()
+    console.log(data)
+    return res.render('display-crud.ejs',{
+        dataTable: data
+    })
 }
 
 // 1 object need key and value
@@ -27,4 +35,5 @@ module.exports = {
     getHomePage : getHomePage,
     getCRUD : getCRUD,
     postCRUD : postCRUD,
+    displayCRUD : displayCRUD,
 }
