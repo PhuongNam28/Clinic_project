@@ -24,10 +24,30 @@ let postCRUD = async (req , res)=>{
 }
 let displayCRUD = async (req , res)=>{
     let data = await CRUDService.getAllUser()
-    console.log(data)
     return res.render('display-crud.ejs',{
         dataTable: data
     })
+}
+let getEditCRUD = async (req,res)=>{
+    let userId = req.query.id;
+    if(userId)
+    {
+        let userData = await CRUDService.getUserInfoById(userId)
+        
+        return res.render("edit-crud.ejs",{user: userData})
+    }
+    else{
+        return res.send("User not found")
+    }
+
+    
+}
+
+let putCRUD = async(req,res)=>{
+    let data = req.body;
+    let allUsers = CRUDService.updateUserData(data)
+    res.redirect('/get-crud')
+    
 }
 
 // 1 object need key and value
@@ -36,4 +56,6 @@ module.exports = {
     getCRUD : getCRUD,
     postCRUD : postCRUD,
     displayCRUD : displayCRUD,
+    getEditCRUD:getEditCRUD,
+    putCRUD:putCRUD
 }
