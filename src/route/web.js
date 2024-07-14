@@ -11,6 +11,7 @@ let initWebRoutes = (app) =>{
     router.get('/get-crud',homeController.displayCRUD)
     router.get('/edit-crud',homeController.getEditCRUD)
     router.post('/put-crud',homeController.putCRUD)
+    router.get('/delete-crud',homeController.deleteCRUD)
 // Begin with /, and it have to use all routes that we declare
     return app.use("/",router)
 }
